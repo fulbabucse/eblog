@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cookie&family=Great+Vibes&family=Moon+Dance&family=Pacifico&family=Passions+Conflict&family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
+
+/*
+font-family: 'Bebas Neue', cursive;
+font-family: 'Cookie', cursive;
+font-family: 'Great Vibes', cursive;
+font-family: 'Moon Dance', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Passions Conflict', cursive;
+font-family: 'Playfair Display', serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+*/
+
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.blog-thumb {
+  overflow: hidden;
+}
+
+.blog-thumb img {
+  transition: transform 0.5s ease-in-out;
+}
+
+.blog-card:hover .blog-thumb img {
+  transform: scale(1.3);
+  transition: transform 0.5s ease-in-out;
+}
+
+.isActive {
+  background-color: rgb(120, 126, 255) !important;
+  color: #fff !important;
+}

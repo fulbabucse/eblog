@@ -1,0 +1,13 @@
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        primaryColor: "#0FCFEC",
+        secondaryColor: "#19D3AE",
+        baseColor: "#2d3748",
+      },
+    },
+  },
+  plugins: [],
+};
