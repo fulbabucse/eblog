@@ -7,6 +7,7 @@ export const DELETE_CONTENT = "DELETE_CONTENT";
 // Admin Section,
 // Authors & Tags Types
 export const ADD_AUTHOR = "ADD_AUTHOR";
+export const GET_AUTHORS = "GET_AUTHORS";
 export const DELETE_AUTHOR = "DELETE_AUTHOR";
 
 export const ADD_TAGS = "ADD_TAGS";

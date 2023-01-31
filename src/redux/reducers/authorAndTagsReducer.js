@@ -1,7 +1,8 @@
-import { ADD_AUTHOR } from "../actionType/actionTypes";
+import { ADD_AUTHOR,  GET_AUTHORS } from "../actionType/actionTypes";
 
 const initialState = {
   authors: [],
+  tags: [],
 };
 
 const authorAndTagsReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const authorAndTagsReducer = (state = initialState, action) => {
       return {
         ...state,
         authors: [...state.authors, action.payload],
+      };
+    case GET_AUTHORS:
+      return {
+        ...state,
+        authors: action.payload,
       };
     default:
       return state;

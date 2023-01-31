@@ -1,12 +1,16 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import addAuthorData from "../../../redux/thunk/addAuthorData";
+import getAuthorsData from "../../../redux/thunk/getAuthor";
 import { imgHostURL } from "../../../utilities/urls";
 
 const Author = () => {
   const [loading, setLoading] = useState(false);
+  const { authors } = useSelector((state) => state.authorTags);
+
   const dispatch = useDispatch();
   const {
     register,
@@ -39,8 +43,12 @@ const Author = () => {
       });
   };
 
+  useEffect(() => {
+    dispatch(getAuthorsData());
+  }, [dispatch]);
+
   return (
-    <div className="flex flex-wrap lg:flex-nowrap">
+    <div className="flex flex-wrap lg:flex-nowrap gap-4">
       <div className="w-full">
         <h1 className="text-xl text-gray-800 text-right mb-3">Add Author</h1>
         <form onSubmit={handleSubmit(handleAuthor)}>
@@ -163,6 +171,7 @@ const Author = () => {
       </div>
       <div className="w-full">
         <h1 className="text-xl text-gray-800 text-right mb-3">Author List</h1>
+        <p>Total {authors?.length} Authors</p>
       </div>
     </div>
   );
