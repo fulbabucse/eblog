@@ -10,7 +10,7 @@ function Navbar() {
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link to="/">
-              <h2 className="text-2xl font-bold baseColor">E-Blog</h2>
+              <h2 className="text-2xl font-bold baseColor">eBlogs</h2>
             </Link>
             <div className="md:hidden">
               <button
