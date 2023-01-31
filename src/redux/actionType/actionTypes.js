@@ -11,4 +11,5 @@ export const GET_AUTHORS = "GET_AUTHORS";
 export const DELETE_AUTHOR = "DELETE_AUTHOR";
 
 export const ADD_TAGS = "ADD_TAGS";
+export const GET_TAGS = "GET_TAGS";
 export const DELETE_TAGS = "DELETE_TAGS";

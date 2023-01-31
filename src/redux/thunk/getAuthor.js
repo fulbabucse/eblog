@@ -5,7 +5,6 @@ const getAuthorsData = () => {
   return async (dispatch, getState) => {
     const res = await fetch(`${baseURL}/admin/authors`);
     const data = await res.json();
-    console.log(data);
     dispatch(getAuthors(data));
   };
 };
