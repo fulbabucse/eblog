@@ -1,9 +1,19 @@
+import { ADD_CONTENT } from "../actionType/actionTypes";
+
 const initialState = {
-  test: "test",
+  authors: [],
 };
 
 const blogsReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case ADD_CONTENT:
+      return {
+        ...state,
+        products: [...state.authors, action.payload],
+      };
+    default:
+      return state;
+  }
 };
 
 export default blogsReducer;
