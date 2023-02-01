@@ -1,7 +1,7 @@
-import { ADD_CONTENT } from "../actionType/actionTypes";
+import { ADD_CONTENT, GET_CONTENT } from "../actionType/actionTypes";
 
 const initialState = {
-  authors: [],
+  blogs: [],
 };
 
 const blogsReducer = (state = initialState, action) => {
@@ -9,7 +9,12 @@ const blogsReducer = (state = initialState, action) => {
     case ADD_CONTENT:
       return {
         ...state,
-        products: [...state.authors, action.payload],
+        blogs: [...state.blogs, action.payload],
+      };
+    case GET_CONTENT:
+      return {
+        ...state,
+        blogs: action.payload,
       };
     default:
       return state;

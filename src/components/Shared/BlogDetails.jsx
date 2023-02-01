@@ -149,7 +149,7 @@ const BlogDetails = () => {
                 <i className="bx bx-user-plus ml-2"></i>
               </button>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-4 mt-10">
+            {/* <div className="flex flex-wrap justify-center items-center gap-4 mt-10">
               <h1>Tags:</h1>
               <li className="list-none">
                 <Link className="border border-gray-200 hover:bg-gray-100 transition-all duration-150 ease-linear capitalize text-gray-800 py-1.5 px-3">
@@ -171,7 +171,7 @@ const BlogDetails = () => {
                   Beauty
                 </Link>
               </li>
-            </div>
+            </div> */}
           </div>
         </div>
       </main>

@@ -1,24 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import blogThumb from "../../assets/blog-thumb.jpg";
 
-const BlogCard = () => {
+const BlogCard = ({ blog }) => {
+  const { post_thumb, author_name, title, posted_date } = blog;
+
   return (
-    <div className="relative blog-card h-96">
+    <div className="relative blog-card h-72 bg-gray-300">
       <figure className="blog-thumb">
-        <img className="w-full" src={blogThumb} alt="Shoes" />
+        <img className="w-full h-72" src={post_thumb} alt="Shoes" />
       </figure>
-      <div className="bg-white absolute bottom-10 w-80 py-4">
+      <div className="bg-white absolute bottom-0 w-64 py-2 pr-2">
         <Link
           to="/blog-details"
-          className="text-lg font-medium leading-5 hover:text-blue-500 hover:underline"
+          className="text-md font-semibold leading-5 hover:text-blue-500 hover:underline"
         >
-          No Bad Blood! The Reason Why Tamr Judge Finally Made Up With
+          {title.length > 30 ? `${title.slice(0, 30)}...` : title}
         </Link>
         <div className="flex items-center gap-4 mt-3 text-sm">
-          <p>by Fahim Islam</p>
+          <p>by {author_name}</p>
           <span>|</span>
-          <p>30 Jan 2023</p>
+          <p>{posted_date}</p>
         </div>
       </div>
     </div>
