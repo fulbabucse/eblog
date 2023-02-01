@@ -1,7 +1,12 @@
-import { ADD_CONTENT, GET_CONTENT } from "../actionType/actionTypes";
+import {
+  ADD_CONTENT,
+  GET_CONTENT,
+  GET_SINGLE_BLOG,
+} from "../actionType/actionTypes";
 
 const initialState = {
   blogs: [],
+  blog: {},
 };
 
 const blogsReducer = (state = initialState, action) => {
@@ -15,6 +20,11 @@ const blogsReducer = (state = initialState, action) => {
       return {
         ...state,
         blogs: action.payload,
+      };
+    case GET_SINGLE_BLOG:
+      return {
+        ...state,
+        blog: action.payload,
       };
     default:
       return state;

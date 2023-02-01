@@ -1,7 +1,7 @@
 import { baseURL } from "../../utilities/urls";
-import { getBlogs } from "../action/blogsActions";
+import { getBlogs, getSingleBlog } from "../action/blogsActions";
 
-const getBlogsData = () => {
+export const getBlogsData = () => {
   return async (dispatch, getState) => {
     const res = await fetch(`${baseURL}/blogs`);
     const data = await res.json();
@@ -9,4 +9,10 @@ const getBlogsData = () => {
   };
 };
 
-export default getBlogsData;
+export const getSingleBlogData = (id) => {
+  return async (dispatch, getState) => {
+    const res = await fetch(`${baseURL}/blogs/${id}`);
+    const data = await res.json();
+    dispatch(getSingleBlog(data));
+  };
+};

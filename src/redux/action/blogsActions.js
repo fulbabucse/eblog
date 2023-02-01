@@ -1,6 +1,7 @@
 import {
   ADD_CONTENT,
   GET_CONTENT,
+  GET_SINGLE_BLOG,
   TOGGLE_TAGS,
   UPLOADS_TIME,
 } from "../actionType/actionTypes";
@@ -30,5 +31,12 @@ export const uploadsTime = (times) => {
   return {
     type: UPLOADS_TIME,
     payload: times,
+  };
+};
+
+export const getSingleBlog = (blog) => {
+  return {
+    type: GET_SINGLE_BLOG,
+    payload: blog,
   };
 };

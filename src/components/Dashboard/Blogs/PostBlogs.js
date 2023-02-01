@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import addBlogsData from "../../../redux/thunk/addBlogsData";
 import getAuthorsData from "../../../redux/thunk/getAuthor";
 import getTagsData from "../../../redux/thunk/getTagsData";
-import { imgHostURL } from "../../../utilities/urls";
 
 const PostBlogs = () => {
   const [loading, setLoading] = useState(false);

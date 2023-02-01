@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BlogCard from "../../components/Shared/BlogCard";
 import { toggleTags, uploadsTime } from "../../redux/action/blogsActions";
-import getBlogsData from "../../redux/thunk/getBlogsData";
+import { getBlogsData } from "../../redux/thunk/getBlogsData";
 import getTagsData from "../../redux/thunk/getTagsData";
 
 const Home = () => {
@@ -27,14 +27,14 @@ const Home = () => {
             }
             return blog;
           })
-          .sort((a, b) => {
+          ?.sort((a, b) => {
             if (parseInt(times) === 1) {
               return a.createAt - b.createAt;
             } else {
               return b.createAt - a.createAt;
             }
           })
-          .map((blog) => (
+          ?.map((blog) => (
             <BlogCard key={blog?._id} blog={blog} />
           ))}
       </div>

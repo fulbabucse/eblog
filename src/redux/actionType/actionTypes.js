@@ -4,6 +4,9 @@ export const GET_CONTENT = "GET_CONTENT";
 export const UPDATE_CONTENT = "UPDATE_CONTENT";
 export const DELETE_CONTENT = "DELETE_CONTENT";
 
+// Get Single Blog
+export const GET_SINGLE_BLOG = "GET_SINGLE_BLOG";
+
 // Admin Section,
 // Authors & Tags Types
 export const ADD_AUTHOR = "ADD_AUTHOR";
