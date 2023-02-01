@@ -4,14 +4,20 @@ import { getBlogsData } from "../../../redux/thunk/getBlogsData";
 import { AiFillDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import deleteBlogData from "../../../redux/thunk/deleteBlogData";
+import { useState } from "react";
 
 const AllBlogs = () => {
   const dispatch = useDispatch();
+  const [blogId, setBlogId] = useState("");
   useEffect(() => {
     dispatch(getBlogsData());
+    dispatch(deleteBlogData(blogId));
   }, [dispatch]);
 
   const { blogs } = useSelector((state) => state.blogs);
+
+  console.log(blogId);
 
   return (
     <div>
@@ -76,8 +82,9 @@ const AllBlogs = () => {
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap flex items-center gap-2">
                         <button
+                          onClick={() => setBlogId(blog?._id)}
                           className="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white p-2 rounded"
-                          type="reset"
+                          type="button"
                         >
                           <AiFillDelete />
                         </button>

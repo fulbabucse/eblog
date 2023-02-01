@@ -1,5 +1,6 @@
 import {
   ADD_CONTENT,
+  DELETE_CONTENT,
   GET_CONTENT,
   GET_SINGLE_BLOG,
   UPDATE_CONTENT,
@@ -8,6 +9,7 @@ import {
 const initialState = {
   blogs: [],
   blog: {},
+  delete: null,
 };
 
 const blogsReducer = (state = initialState, action) => {
@@ -31,6 +33,11 @@ const blogsReducer = (state = initialState, action) => {
       return {
         ...state,
         blog: action.payload,
+      };
+    case DELETE_CONTENT:
+      return {
+        ...state,
+        delete: action.payload,
       };
     default:
       return state;

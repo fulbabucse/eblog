@@ -1,5 +1,6 @@
 import {
   ADD_CONTENT,
+  DELETE_CONTENT,
   GET_CONTENT,
   GET_SINGLE_BLOG,
   TOGGLE_TAGS,
@@ -25,6 +26,13 @@ export const updateBlog = (blog) => {
   return {
     type: UPDATE_CONTENT,
     payload: blog,
+  };
+};
+
+export const deleteBlog = (data) => {
+  return {
+    type: DELETE_CONTENT,
+    payload: data,
   };
 };
 
