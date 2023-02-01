@@ -7,6 +7,7 @@ import AllBlogs from "../components/Dashboard/Blogs/AllBlogs";
 import BlogDetails from "../components/Shared/BlogDetails";
 import Author from "../components/Dashboard/Author/Author";
 import Tags from "../components/Dashboard/Tags/Tags";
+import UpdateBlogs from "../components/Shared/UpdateBlogs";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: "/dashboard/all-blogs", element: <AllBlogs /> },
       { path: "/dashboard/author", element: <Author /> },
       { path: "/dashboard/tags", element: <Tags /> },
+      { path: "/dashboard/admin/blogs/:id", element: <UpdateBlogs /> },
     ],
   },
 ]);

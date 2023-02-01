@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import addBlogsData from "../../../redux/thunk/addBlogsData";
-import getAuthorsData from "../../../redux/thunk/getAuthor";
-import getTagsData from "../../../redux/thunk/getTagsData";
+import { useParams } from "react-router-dom";
+import addBlogsData from "../../redux/thunk/addBlogsData";
+import getAuthorsData from "../../redux/thunk/getAuthor";
+import { getSingleBlogData } from "../../redux/thunk/getBlogsData";
+import getTagsData from "../../redux/thunk/getTagsData";
 
-const PostBlogs = () => {
+const UpdateBlogs = () => {
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAuthorsData());
     dispatch(getTagsData());
+    dispatch(getSingleBlogData(id));
   }, [dispatch]);
-  const { authors, tags } = useSelector((state) => state.authorTags);
+  const { authorTags, blogs } = useSelector((state) => state);
 
   const {
     register,
@@ -20,7 +24,16 @@ const PostBlogs = () => {
     formState: { errors },
   } = useForm();
 
-  const handleBlogPost = (blogData) => {
+  const {
+    title,
+    author_name,
+    post_thumb,
+    post_body,
+    post_tags,
+    post_important,
+  } = blogs.blog;
+
+  const handleUpdateBlog = (blogData) => {
     setLoading(true);
     const blog = {
       title: blogData.post_title,
@@ -36,17 +49,16 @@ const PostBlogs = () => {
       }),
       createAt: Date.now(),
     };
-
-    dispatch(addBlogsData(blog));
+    console.log(blog);
     setLoading(false);
   };
 
   return (
     <div>
       <h1 className="text-center my-3 text-gray-800 text-xl font-semibold uppercase">
-        Post Blog
+        Update Blog
       </h1>
-      <form onSubmit={handleSubmit(handleBlogPost)} className="w-full">
+      <form onSubmit={handleSubmit(handleUpdateBlog)} className="w-full">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -59,6 +71,7 @@ const PostBlogs = () => {
               {...register("post_title", {
                 required: "Title is required",
               })}
+              defaultValue={title}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="post_title"
               type="text"
@@ -85,9 +98,9 @@ const PostBlogs = () => {
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="author_name"
               >
-                <option>Select One</option>
+                <option>{author_name}</option>
 
-                {authors?.map((author) => (
+                {authorTags?.authors?.map((author) => (
                   <option key={author?._id}>{author?.author_name}</option>
                 ))}
               </select>
@@ -118,6 +131,7 @@ const PostBlogs = () => {
               {...register("post_thumb", {
                 required: "Thumbnail is required",
               })}
+              defaultValue={post_thumb}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="post_thumb"
               type="text"
@@ -142,6 +156,7 @@ const PostBlogs = () => {
               {...register("post_body", {
                 required: "Body is required",
               })}
+              defaultValue={post_body}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="post_body"
               type="text"
@@ -164,6 +179,7 @@ const PostBlogs = () => {
               {...register("post_important", {
                 required: "Important is required",
               })}
+              defaultValue={post_important}
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="post_important_note"
               type="text"
@@ -192,8 +208,8 @@ const PostBlogs = () => {
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="post_tags"
               >
-                <option>Select One</option>
-                {tags?.map((tags) => (
+                <option>{post_tags}</option>
+                {authorTags?.tags?.map((tags) => (
                   <option value={tags?.tags_link} key={tags?._id}>
                     {tags?.tags_name}
                   </option>
@@ -265,4 +281,4 @@ const PostBlogs = () => {
   );
 };
 
-export default PostBlogs;
+export default UpdateBlogs;
