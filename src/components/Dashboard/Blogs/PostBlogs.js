@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import addBlogsData from "../../../redux/thunk/addBlogsData";
+import { addBlogsData } from "../../../redux/thunk/addBlogsData";
 import getAuthorsData from "../../../redux/thunk/getAuthor";
 import getTagsData from "../../../redux/thunk/getTagsData";
 

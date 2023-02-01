@@ -3,6 +3,7 @@ import {
   GET_CONTENT,
   GET_SINGLE_BLOG,
   TOGGLE_TAGS,
+  UPDATE_CONTENT,
   UPLOADS_TIME,
 } from "../actionType/actionTypes";
 
@@ -17,6 +18,13 @@ export const getBlogs = (blogs) => {
   return {
     type: GET_CONTENT,
     payload: blogs,
+  };
+};
+
+export const updateBlog = (blog) => {
+  return {
+    type: UPDATE_CONTENT,
+    payload: blog,
   };
 };
 

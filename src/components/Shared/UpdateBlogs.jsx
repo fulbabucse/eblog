@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import addBlogsData from "../../redux/thunk/addBlogsData";
+import { updateBlogData } from "../../redux/thunk/addBlogsData";
 import getAuthorsData from "../../redux/thunk/getAuthor";
 import { getSingleBlogData } from "../../redux/thunk/getBlogsData";
 import getTagsData from "../../redux/thunk/getTagsData";
@@ -15,7 +15,7 @@ const UpdateBlogs = () => {
     dispatch(getAuthorsData());
     dispatch(getTagsData());
     dispatch(getSingleBlogData(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   const { authorTags, blogs } = useSelector((state) => state);
 
   const {
@@ -49,7 +49,8 @@ const UpdateBlogs = () => {
       }),
       createAt: Date.now(),
     };
-    console.log(blog);
+
+    dispatch(updateBlogData(id, blog));
     setLoading(false);
   };
 

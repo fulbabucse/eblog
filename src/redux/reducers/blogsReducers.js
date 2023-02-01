@@ -2,6 +2,7 @@ import {
   ADD_CONTENT,
   GET_CONTENT,
   GET_SINGLE_BLOG,
+  UPDATE_CONTENT,
 } from "../actionType/actionTypes";
 
 const initialState = {
@@ -22,6 +23,11 @@ const blogsReducer = (state = initialState, action) => {
         blogs: action.payload,
       };
     case GET_SINGLE_BLOG:
+      return {
+        ...state,
+        blog: action.payload,
+      };
+    case UPDATE_CONTENT:
       return {
         ...state,
         blog: action.payload,
