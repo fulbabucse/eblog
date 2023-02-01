@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BlogCard from "../../components/Shared/BlogCard";
+import { toggleTags } from "../../redux/action/blogsActions";
 import getBlogsData from "../../redux/thunk/getBlogsData";
 import getTagsData from "../../redux/thunk/getTagsData";
 
@@ -11,14 +12,25 @@ const Home = () => {
     dispatch(getBlogsData());
   }, [dispatch]);
 
-  const { authorTags, blogs } = useSelector((state) => state);
+  const { authorTags, blogs, filter } = useSelector((state) => state);
+
+  const tags = filter.tags;
+
+  console.log(tags);
 
   return (
     <div className="md:flex justify-center gap-4 px-3 lg:px-0">
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 px-4 lg:px-0">
-        {blogs?.blogs?.map((blog) => (
-          <BlogCard key={blog?._id} blog={blog} />
-        ))}
+        {blogs?.blogs
+          ?.filter((blog) => {
+            if (tags.length) {
+              return tags.includes(blog?.post_tags);
+            }
+            return blog;
+          })
+          .map((blog) => (
+            <BlogCard key={blog?._id} blog={blog} />
+          ))}
       </div>
       <div className="mt-10 max-w-xs">
         <h1 className="text-xl text-gray-800 uppercase text-center font-bold mb-3">
@@ -27,7 +39,12 @@ const Home = () => {
         <div className="flex flex-wrap justify-center items-center gap-4">
           {authorTags?.tags?.map((tag) => (
             <li key={tag?._id} className="list-none">
-              <button className="border border-gray-200 hover:bg-gray-100 transition-all duration-150 ease-linear capitalize text-gray-800 py-1.5 px-3">
+              <button
+                onClick={() => dispatch(toggleTags(tag?.tags_link))}
+                className={`${
+                  tags.includes(tag?.tags_link) ? "bg-gray-300" : undefined
+                } border border-gray-200 hover:bg-gray-100 transition-all duration-150 ease-linear capitalize text-gray-800 py-1.5 px-3`}
+              >
                 {tag?.tags_name}
               </button>
             </li>
