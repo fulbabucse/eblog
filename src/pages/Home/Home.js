@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BlogCard from "../../components/Shared/BlogCard";
-import { toggleTags } from "../../redux/action/blogsActions";
+import { toggleTags, uploadsTime } from "../../redux/action/blogsActions";
 import getBlogsData from "../../redux/thunk/getBlogsData";
 import getTagsData from "../../redux/thunk/getTagsData";
 
@@ -15,8 +15,7 @@ const Home = () => {
   const { authorTags, blogs, filter } = useSelector((state) => state);
 
   const tags = filter.tags;
-
-  console.log(tags);
+  const times = filter.uploadsTime;
 
   return (
     <div className="md:flex justify-center gap-4 px-3 lg:px-0">
@@ -27,6 +26,13 @@ const Home = () => {
               return tags.includes(blog?.post_tags);
             }
             return blog;
+          })
+          .sort((a, b) => {
+            if (parseInt(times) === 1) {
+              return a.createAt - b.createAt;
+            } else {
+              return b.createAt - a.createAt;
+            }
           })
           .map((blog) => (
             <BlogCard key={blog?._id} blog={blog} />
@@ -59,11 +65,12 @@ const Home = () => {
           </label>
           <div className="relative">
             <select
+              onChange={(e) => dispatch(uploadsTime(e.target.value))}
               className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="post_tags"
             >
-              <option>Last uploads</option>
-              <option>First uploads</option>
+              <option value="2">Last uploads</option>
+              <option value="1">First uploads</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg

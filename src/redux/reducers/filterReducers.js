@@ -1,7 +1,8 @@
-import { TOGGLE_TAGS } from "../actionType/actionTypes";
+import { TOGGLE_TAGS, UPLOADS_TIME } from "../actionType/actionTypes";
 
 const initialState = {
   tags: [],
+  uploadsTime: 0,
 };
 
 export const filterReducer = (state = initialState, action) => {
@@ -18,19 +19,12 @@ export const filterReducer = (state = initialState, action) => {
           tags: state.tags.filter((tag) => tag !== action.payload),
         };
       }
+    case UPLOADS_TIME:
+      return {
+        ...state,
+        uploadsTime: action.payload,
+      };
     default:
       return state;
   }
 };
-
-/**
- * return {
-          ...state,
-          filters: {
-            ...state.filters,
-            brands: state.filters.brands.filter(
-              (brand) => brand !== action.payload
-            ),
-          },
-        };
- */

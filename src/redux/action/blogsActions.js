@@ -2,6 +2,7 @@ import {
   ADD_CONTENT,
   GET_CONTENT,
   TOGGLE_TAGS,
+  UPLOADS_TIME,
 } from "../actionType/actionTypes";
 
 export const addBlogs = (blog) => {
@@ -22,5 +23,12 @@ export const toggleTags = (tagsName) => {
   return {
     type: TOGGLE_TAGS,
     payload: tagsName,
+  };
+};
+
+export const uploadsTime = (times) => {
+  return {
+    type: UPLOADS_TIME,
+    payload: times,
   };
 };

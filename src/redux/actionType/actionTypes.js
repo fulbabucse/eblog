@@ -16,3 +16,4 @@ export const DELETE_TAGS = "DELETE_TAGS";
 
 // Filters
 export const TOGGLE_TAGS = "TOGGLE_TAGS";
+export const UPLOADS_TIME = "UPLOADS_TIME";
